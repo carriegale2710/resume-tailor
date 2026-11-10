@@ -69,6 +69,7 @@
 ### Queensland University of Technology, Graduate Certificate/Master of IT
 
 - Remote | Feb 2026 – Jul 2026 (Graduate Certificate) or Feb 2026 – est. grad 2028 (Master) | Computer Science major | GPA 6.5/7
+- Graduate Certificate completed Jul 2026 (user confirmed 10 Nov 2026).
 - Projects: Indigenous Library Portal.
 
 > Use Graduate Certificate if the job requires graduation before March 2027; otherwise use Master of IT (est. grad 2028).
@@ -241,7 +242,7 @@ Launceston, TAS | Nov 2011 – Feb 2012
 
 Role: solo | Team: solo
 Stack: React, TypeScript, SCSS, Java, Spring Boot, MySQL → PostgreSQL (Render), AWS (EC2, S3), Log4j, JUnit, Mockito, REST Assured, Vitest, GitHub Actions, Trello
-Live: https://employeecreator.site/ (currently not working; do not link until restored) | Repo: ${GITHUB_URL}/employee-creator
+Live: https://employeecreator.site/ (API fixed and live; user-confirmed) | Repo: ${GITHUB_URL}/employee-creator
 
 **One-liners:**
 
