@@ -10,6 +10,8 @@ fail() {
   exit 1
 }
 
+[[ -d "$master" ]] || fail "no master/ folder. Run setup first: cp -r master-example master"
+
 for f in skills-inventory.csv metrics-log.csv narrative-notes.md archive.md; do
   [[ -s "$master/$f" ]] || fail "missing or empty: master/$f"
 done

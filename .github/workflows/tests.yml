@@ -17,5 +17,9 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install --no-install-recommends -y pandoc gawk
+      - name: Set up template folders
+        run: |
+          [ -d master ] || cp -r master-example master
+          [ -d applications ] || cp -r applications-example applications
       - name: Run all tests
         run: bash tests/run-all.sh
