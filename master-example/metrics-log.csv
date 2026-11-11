@@ -1,2 +1,9 @@
 Claim,Where used,Type,How derived / source,Safe wording if unproven
-EXAMPLE: 20% faster page load,Project or employer name,Self-reported,"Where the number came from (repo, report, reference); note if it cannot be shared","""faster page load"""
+Test coverage on reconciliation module 52% to 71%,Harbourline Payments,Evidenced,"pytest-cov report in the pull request description (screenshot saved locally)",n/a
+Settlement query from about 4 seconds to under 1 second,Harbourline Payments,Self-reported,"Own timing in local test database; no saved EXPLAIN output","""a faster settlement query"""
+Four REST endpoints added,Harbourline Payments,Evidenced,"Merged pull requests in team repo (count of endpoints in router file)",n/a
+Team of eight,Harbourline Payments,Evidenced,"Supervisor reference and team page",n/a
+About 150 customers per shift,Kettle & Crumb Cafe,Estimate,"Manager's rough figure for a weekday shift; no till report kept","""served customers during busy shifts"""
+Trained five new staff,Kettle & Crumb Cafe,Self-reported,"Own count; no written record","""trained new staff"""
+Six fortnightly workshops with about 20 students,Coding Club,Self-reported,"Club sign-up sheets were not kept","""ran Python workshops for first-year students"""
+Project pipeline would handle 1M rows a day,Daily Weather ETL,Projection,"Calculated from row size; never load-tested","do not use a number"

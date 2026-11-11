@@ -1,2 +1,9 @@
 Category,Strong,Proficient,Weak / exposure only
-EXAMPLE: Languages,"Skills a master bullet evidences strongly","Skills used but less deeply","Exposure only (coursework, training); never lead with these"
+Languages,"Python, SQL","Bash","Java (coursework), JavaScript (coursework)"
+Backend and APIs,"FastAPI, REST API design","SQLAlchemy",Flask
+Databases,"PostgreSQL","SQLite, dbt (tests only)","MongoDB (coursework)"
+Data tools,"pandas","Airflow (portfolio project)",
+Testing,"pytest","pytest-cov",Postman
+DevOps and cloud,"Docker, GitHub Actions","Docker Compose","AWS (Cloud Practitioner and free-tier labs only), Terraform (tutorial only)"
+Tools and practice,"Git and GitHub, code review","Jira, Agile (internship sprints)",
+Customer-facing,"Customer service, till and cash handling","Staff training",
