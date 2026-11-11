@@ -118,10 +118,10 @@ Its skills load only in sessions started in this repo. Restart the session or ru
 
 ### Use your own data (template folders)
 
-`master/` and `applications/` hold the repo owner's data. Use the empty `-example` folders instead:
+`master/` and `applications/` hold the repo owner's data. Use the blank `-example` templates instead:
 
 1. Rename `master-example/` to `master/` and `applications-example/` to `applications/`.
-2. Fill `master/master-resume.md`. Leave every unknown as `TODO` and every `${...}` placeholder as written.
+2. Follow `master/README.md` (fill-in guide; delete it when done). Fill `master/master-resume.md` first. Leave every unknown as `TODO` and every `${...}` placeholder as written.
 3. Copy `.env.example` to `.env` and fill in your contact details.
 
 ### Word templates
@@ -341,7 +341,7 @@ master-resume/
 ├── applications/                  # tracker.csv, archive/, one YYYY-MM-company-role/ folder per application
 ├── master/                        # master-resume.md, metrics-log.csv, skills-inventory.csv, narrative-notes.md, archive.md, tags.md
 ├── applications-example/          # empty template: rename to applications/ (see Setup)
-├── master-example/                # empty template: rename to master/ (see Setup)
+├── master-example/                # blank fill-in template: rename to master/ (see Setup)
 ├── tailoring-rules/               # every-resume.md, by-role/ and by-company/ checklists
 ├── templates/                     # resume, cover letter, emails, LinkedIn/GitHub profile, case study, about me; *-reference.docx (Word styles)
 ├── examples/                      # job-desc-samples/
