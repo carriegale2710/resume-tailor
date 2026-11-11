@@ -20,6 +20,7 @@ Follow `AGENTS.md`. These win over any general humanizing advice:
 - Australian English spelling.
 - Keep a professional, plain tone. No slang, no fake casualness, no emoji.
 - First person is fine in a cover letter; keep it specific ("I built", not "I am passionate about").
+- Never start a sentence with "I". Lead with the action, context or result ("On a two-week project, I built...").
 
 ## Patterns to fix
 

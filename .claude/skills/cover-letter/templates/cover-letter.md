@@ -1,32 +1,66 @@
-# cover-letter.md format
+# cover-letter.md
 
-```markdown
-# Name Surname
+${RESUME_NAME}  
+${RESUME_LOCATION}  
+${RESUME_PHONE}  
+${RESUME_EMAIL}
 
-0400 000 000 | name.surname@email.com | linkedin.com/in/namesurname
+&nbsp;
 
-2 November 2026
+[Date]
 
-Ms Jane Jenkins
-HR Manager
-Company Name
-Street, Suburb STATE Postcode
+&nbsp;
 
-**Re: Graduate Software Engineer – Company Name (Ref: 1234)**
+[Hiring Manager Name / Recruitment Team]  
+[Company Name]  
+[Company Address]
 
-Dear Ms Jenkins,
+&nbsp;
 
-<opening paragraph>
+&nbsp;
 
-<engineering evidence paragraph>
+**Re: Name of position – [Company Name]**
 
-<working with people paragraph, if separate>
+&nbsp;
 
-<why this company and closing paragraph>
+&nbsp;
 
-Yours sincerely,
+Dear [Hiring Manager Name] or Dear HR Manager or Dear Recruitment Team (Only use Dear Sir/Madam if you are unable to find a name),
 
-Name Surname
-```
+&nbsp;
 
-Use the date format `D Month YYYY`. Include whatever recipient details are known; leave out unknown lines rather than guessing.
+<!-- ## First paragraph -->
+
+- Introduce yourself (summary of relevant qualifications and experience)
+- Detail why you want that job and why you want to work for that company
+- Highlight how you will meet their needs (what value can you bring? Do not focus on what you want)
+
+&nbsp;
+
+<!-- ## Middle paragraphs -->
+
+- Describe selected skills and knowledge through experiences undertaken and resulting achievements
+  - Select the 3-5 most important based on the selection criteria and/or job description
+- Each paragraph can describe an experience that showcases various skills; or
+- Each paragraph can focus on a skill and describe the various experiences in which it was applied
+
+&nbsp;
+
+<!-- ## Summary paragraph -->
+
+- Tell them why you are the best fit for the company and how your skills will meet their needs
+- Tip: you could summarise the 3 best things about you that make you most competitive for the job and how these things will allow you to make an impact / get results in the role
+
+&nbsp;
+
+<!-- ## Closing paragraph -->
+
+- Thank them for considering your application and make a positive statement about discussing your application and the position further at an interview.
+
+&nbsp;
+
+Yours sincerely, (or Yours faithfully if you do not have a name and have used Dear Sir/Madam)
+
+&nbsp;
+
+${RESUME_NAME}

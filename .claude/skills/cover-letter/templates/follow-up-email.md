@@ -1,4 +1,4 @@
-# email.md
+# follow-up-email.md
 
 Write this when the application goes by email, or when the user asks. Do not paste the cover letter into the email body unless the employer asks.
 

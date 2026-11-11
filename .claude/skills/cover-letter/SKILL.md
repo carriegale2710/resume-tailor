@@ -10,7 +10,18 @@ A cover letter is a short argument for hiring the user, not a longer version of 
 Specific evidence beats claims. One real project with a real engineering decision says more than "passionate problem-solver".
 
 Inputs: `criteria.md`, `research.md`, `resume.md`, `master/master-resume.md`, `master/stories.md`.
-Outputs: `cover-letter.md` (format below, ready for `docx-export`) and `email.md`.
+Outputs: `cover-letter.md`, `email.md` (cover email), or `cold-email.md`.
+
+Files in this skill (read the one you need before writing):
+
+| File                                     | Use for                                                        |
+| ---------------------------------------- | -------------------------------------------------------------- |
+| `templates/cover-letter.md`              | Layout of `cover-letter.md` (job-ad, speculative, follow-up, referral) |
+| `templates/follow-up-email.md`           | Short email that carries an emailed application (`email.md`)   |
+| `templates/cold-email.md`                | Outreach to a hiring manager, engineer or founder (`cold-email.md`) |
+| `reference/golden-example.md`            | Exemplar letter: match its voice, evidence depth and length; never copy its content |
+
+`cover-letter.md` must follow `templates/cover-letter.md` exactly: copy it, then replace each `[placeholder]` and bullet-prompt block with the letter text. Keep the layout: the `${RESUME_*}` header placeholders (leave as written), `&nbsp;` spacer lines, date, recipient block, bold `**Re: <Position> – <Company>**` line, greeting, body paragraphs, sign-off, `${RESUME_NAME}`. Delete the template's HTML comments and instruction bullets from the output. Where the template's greeting/sign-off or subject-line options conflict with sections 1 and 4, sections 1 and 4 pick the option. Omit the `Re:` line and its spacers for a speculative letter.
 
 ## 1. Pick the letter type
 
@@ -33,7 +44,7 @@ Use the `Letter type` in `criteria.md`.
 
 ## 3. Structure
 
-Three or four short paragraphs. Follow the employer's instructions first if they set a length or format. Use files in `templates/` and `references/` folder as guides only. Each paragraph should have a clear purpose:
+Three or four short paragraphs. Follow the employer's instructions first if they set a length or format. The template sets the page layout; this section sets the body content (the template's first, middle, summary and closing prompts map onto paragraphs 1-4 below). Each paragraph should have a clear purpose:
 
 1. **Opening - the match.** The role, plus one line connecting the user's strongest relevant work to the employer's need.
 2. **Engineering evidence - why you.** Pick one relevant project from `master/stories.md` and tell it as: **problem → the user's contribution → decision or difficulty → result**. Show behaviours a junior engineer needs: debugging, testing, reading documentation, using Git, breaking down a problem. Name the ad's technologies only where this example used them. Include one useful project link (repo or demo). Choose the example that covers the most vital criteria from `criteria.md`; do not try to cover every criterion.
@@ -98,6 +109,8 @@ If the ad asks for a tool the user lacks, use at most one honest bridge sentence
 - Spell out uncommon acronyms. No SMS abbreviations.
 - Never reuse a letter by swapping the company name. Similar roles can share structure, but motivation and evidence must be specific to each. Final test: could another applicant send this unchanged? If yes, add more of the user's actual work, not more adjectives.
 - Proofread against the actual ad: company name, role title, reference number and recipient name.
+
+Emails: follow `templates/follow-up-email.md` for an application email and `templates/cold-email.md` for outreach.
 
 ## 8. Quality check
 

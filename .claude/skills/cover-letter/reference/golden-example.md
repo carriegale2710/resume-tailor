@@ -1,19 +1,25 @@
-# Golden example reference
+# Exemplar Cover Letter: Junior Software Engineer
 
-> Important: only use the Canva version if the project, technologies, bug, and links are genuinely yours. The fictional details are there to show the level of specificity you should aim for—not to copy. A strong cover letter should be personal, targeted, and authentic rather than a generic template.
+Alex Morgan
+0412 345 678 | alex.morgan@email.com | Sydney, NSW
+github.com | linkedin.com
 
-Dear Hiring Team,
+12 November 2026
 
-I’m applying for the Junior Software Engineer role at Canva. I’m particularly interested in Canva’s focus on making creative tools fast and intuitive for non-technical users, because my recent project, StudyRoom, gave me hands-on experience building a user-facing web application with React, TypeScript, Node.js and PostgreSQL.
+Hiring Manager
+TechCorp Solutions
+Sydney, NSW
 
-In StudyRoom, I built a study-room booking app that let students reserve shared study spaces. The most challenging issue was duplicate bookings: two users could reserve the same time slot if their requests arrived at nearly the same time. My initial approach checked availability in the frontend, but I realised that was unreliable because requests could still conflict. I moved the availability check into the database, added an integration test that reproduced the race condition, and documented the design decision in the README.
+Dear Ms. Chen,
 
-That project changed how I think about software. A feature is not finished when it works once; it needs to handle edge cases, be testable, and be understandable to another developer. I used Git to make incremental commits, wrote tests for the booking logic, and incorporated feedback from a teammate by simplifying the API’s error responses and documenting the expected behaviour.
+I am writing to express my strong interest in the Junior Software Engineer position on your web platform team. Having recently graduated with a Bachelor of Computer Science from the University of New South Wales, I am eager to bring my hands-on experience in React, TypeScript, and Node.js to TechCorp Solutions.
 
-I’m drawn to Canva because its products make complex creative work accessible to people without a design background. I would bring a practical approach to debugging, testing and collaboration, and I’m ready to learn Canva’s codebase and workflows while contributing from the start.
+In my final-year capstone project, I built a full-stack scheduling application used by over 300 students to book peer-tutoring sessions. I developed the responsive front end in React and TypeScript, built a lightweight REST API with Node.js, wrote automated unit tests in Jest, and deployed the app on a cloud platform. When user traffic spiked during exam week, I optimized database queries and implemented caching, which reduced average page load times from 4 seconds to under 1 second. The source code and architecture write-up are available on my GitHub.
 
-My GitHub and project demo are available here: github.com/yourname/studyroom | studyroom-demo.vercel.app.
+Furthermore, during a software engineering internship at a local logistics firm, I collaborated with a five-person agile team to fix dashboard bugs and participate in code reviews. This experience taught me how to write clean, maintainable code under version control (Git) and how to communicate effectively during daily stand-ups and sprint planning.
 
-Kind regards,  
-Alex Chen  
-04XX XXX XXX | alex@email.com | github.com/yourname
+I admire TechCorp’s commitment to building scalable, user-centric web tools and would welcome the opportunity to discuss how my technical foundation and rapid learning curve can support your engineering roadmap. Thank you for your time and consideration.
+
+Sincerely,
+
+Alex Morgan

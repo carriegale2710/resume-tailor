@@ -48,3 +48,4 @@ This checklist will help you assess and improve the effectiveness of your cover 
 - [ ] Thoroughly check all grammar and punctuation: use a good dictionary and do not rely solely on the spell check function
 - [ ] Use appropriate language: no SMS abbreviations, and no uncommon acronyms without explaining them
 - [ ] The writing style should be appropriate to the industry, direct and succinct
+- [ ] No sentence starts with "I" (lead with the action, context or result instead)
