@@ -23,11 +23,11 @@ Not for you if you want a one-click web builder, auto-apply, or a tool that work
 
 ### Why use it over alternatives
 
-| Alternative                            | Gap                                                                                       | This repo                                                                                                  |
-| -------------------------------------- | ----------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| Chatbot "tailor my resume" prompt      | Free to stretch skills, round numbers and invent details. Nothing checks the output.      | Facts and numbers come only from `master/`. `verify-claims` audits each draft against the master.          |
-| Online resume builders                 | Your data lives on their service. Layout tools, not fact checks.                          | Everything stays in local files. Contact details live in a gitignored `.env`, never in drafts.             |
-| Hand-edited Word copies                | Versions drift apart. Old bullets and numbers go stale or contradict each other.          | One master, one folder per application, status tracked in `applications/tracker.csv`, history in Git.      |
+| Alternative                       | Gap                                                                                  | This repo                                                                                             |
+| --------------------------------- | ------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------- |
+| Chatbot "tailor my resume" prompt | Free to stretch skills, round numbers and invent details. Nothing checks the output. | Facts and numbers come only from `master/`. `verify-claims` audits each draft against the master.     |
+| Online resume builders            | Your data lives on their service. Layout tools, not fact checks.                     | Everything stays in local files. Contact details live in a gitignored `.env`, never in drafts.        |
+| Hand-edited Word copies           | Versions drift apart. Old bullets and numbers go stale or contradict each other.     | One master, one folder per application, status tracked in `applications/tracker.csv`, history in Git. |
 
 What you get that the alternatives do not give together:
 
@@ -159,10 +159,10 @@ Paste the posting into `applications/<folder>/job-description.md`.
 
 ### 2. Tailor
 
-In an agent session run `tracker-intake`, then `resume-orchestrator`. It analyses the posting, drafts with `resume-drafter`, reviews with `job-application-agent:application-lint` and pulls in other plugin skills as needed.
+In an agent session run `tracker-intake`, then `resume-orchestrator`. It analyses the posting, drafts with `resume-drafter`, reviews with `application-lint` and pulls in other repo skills as needed.
 
 - The agent writes `resume.md` and never edits `master/`.
-- Run `job-application-agent:cover-letter` only if a letter is needed.
+- Run `cover-letter` only if a letter is needed.
 
 To draft by hand, run the command below. Then pick the 5-7 strongest bullets, mirror only keywords the master supports, and cut to one page (two pages maximum).
 
@@ -302,8 +302,8 @@ Summary-variant and add-on tags, and what each tag covers, live in `master/tags.
 
 - `AGENTS.md` holds the canonical rules. `CLAUDE.md` points to it.
 - `.claude/skills/` holds the skills as plain Markdown.
-- Skill order: `tracker-intake`, `resume-orchestrator`, `verify-claims`, then optionally `job-application-agent:cover-letter` and `job-application-agent:interview-prep`.
-- General application skills come from the [`job-application-agent`](https://github.com/carriegale2710/job-application-agent) plugin. `AGENTS.md` maps its paths to this repo.
+- Skill order: `tracker-intake`, `resume-orchestrator`, `verify-claims`, then optionally `cover-letter` and `interview-prep`.
+- General application skills live in `.claude/skills/` (copied from the [`job-application-agent`](https://github.com/carriegale2710/job-application-agent) plugin). The plugin is a fallback; `AGENTS.md` maps its paths to this repo.
 
 **Tools without file access:** paste `AGENTS.md` into the instructions and upload only the skill, master and job description needed. Never upload `master/metrics-log.csv`, `master/narrative-notes.md` or `master/archive.md` to tools you do not control.
 
@@ -328,7 +328,7 @@ bash tests/run-all.sh
 ## Repository structure
 
 ```
-master-resume/
+master-master/
 ├── README.md
 ├── AGENTS.md                      # canonical agent rules (edit this)
 ├── CLAUDE.md                      # one line: @AGENTS.md

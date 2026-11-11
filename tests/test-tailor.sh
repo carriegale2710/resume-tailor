@@ -98,7 +98,7 @@ new; run 2 "${pre}skip
 y
 q
 " || fail "5: tailor.sh exited non-zero"
-[[ "$(tail -n 2 "$T/claude.log")" == "/job-application-agent:cover-letter $dir
+[[ "$(tail -n 2 "$T/claude.log")" == "/cover-letter $dir
 /verify-claims $dir/cover-letter.md" ]] || fail "5: cover letter not followed by its verify, got: $(tail -n 2 "$T/claude.log")"
 [[ "$(status "$dir" cover_letter_status)" == verified ]] || fail "5: cover_letter_status should be verified, got: $(status "$dir" cover_letter_status)"
 [[ "$(status "$dir")" == verified ]] || fail "5: resume status should stay verified, got: $(status "$dir")"

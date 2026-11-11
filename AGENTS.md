@@ -18,7 +18,7 @@ When any skill asks the user a question (gap interview, interview prep, cover le
 - Skills: `master/skills-inventory.csv`, at the level the evidence supports. No skill goes above Weak / exposure only without a master bullet.
 - STAR stories: `master/stories.md` (create it with the first story).
 
-Use `job-application-agent:master-resume` for the edit. Show each edit as file, section, old, new; write only what the user confirms. Unknown parts stay `TODO`. Then use the fact in the application file, under the privacy rules below.
+Use `master-resume` for the edit. Show each edit as file, section, old, new; write only what the user confirms. Unknown parts stay `TODO`. Then use the fact in the application file, under the privacy rules below.
 
 ## Privacy
 
@@ -52,27 +52,27 @@ Use `job-application-agent:master-resume` for the edit. Show each edit as file, 
 
 ## Skills
 
-Repo-specific skills live in `.claude/skills/<name>/SKILL.md`. General application skills come from the `job-application-agent` plugin (invoked as `job-application-agent:<skill>`). Typical order for an application:
+Skills live in `.claude/skills/<name>/SKILL.md`; always use these first. The general application skills there are copies of the `job-application-agent` plugin skills, invoked by bare name (`cover-letter`, not `job-application-agent:cover-letter`). Use the plugin version only when no repo copy exists. Typical order for an application:
 
 1. `tracker-intake`
-2. `resume-orchestrator` (runs `job-application-agent:job-ad-decoder`, `resume-drafter`, `job-application-agent:application-lint`, and other plugin skills as needed, then `verify-claims`)
+2. `resume-orchestrator` (runs `job-ad-decoder`, `resume-drafter`, `application-lint`, and other repo skills as needed, then `verify-claims`)
 3. `verify-claims` (mandatory final step before any file is called ready)
-4. `job-application-agent:cover-letter` (optional), then `humanize-prose` on the letter (never on the resume), then `verify-claims` on the letter
-5. `job-application-agent:interview-prep` (after applying)
+4. `cover-letter` (optional), then `humanize-prose` on the letter (never on the resume), then `verify-claims` on the letter
+5. `interview-prep` (after applying)
 
 Other repo skills live in the same folder; each `SKILL.md` description says when to use it.
 
-### Plugin skills in this repo
+### Plugin-derived skills in this repo
 
-The `job-application-agent` plugin assumes its own file layout. In this repo, read its paths as:
+The `job-application-agent` plugin, and the skills copied from it, assume its own file layout. In this repo, read its paths as:
 
-- `resume/master-resume.md` is `master/master-resume.md`. `resume/stories.md` and `resume/linkedin.md` are `master/stories.md` and `master/linkedin.md` (master write-back may create `master/stories.md`; create `master/linkedin.md` only when the user asks).
+- `master/master-resume.md` is `master/master-resume.md`. `master/stories.md` and `master/linkedin.md` are `master/stories.md` and `master/linkedin.md` (master write-back may create `master/stories.md`; create `master/linkedin.md` only when the user asks).
 - `applications/<company>-<role>/` is `applications/<folder>/`. The ad is in `job-description.md`; `job-ad-decoder` writes `criteria.md` beside it.
 - Numbers come from `master/metrics-log.csv` per the source-of-truth rules, not from the plugin's estimate rules.
 - `applications/tracker.csv` is the tracker. Never create the plugin's `tracker.md`.
-- Never run `job-application-agent:docx-export`; `scripts/build.sh` exports (user-run only).
+- Never run `docx-export` (repo or plugin); `scripts/build.sh` exports (user-run only).
 
-Where a plugin skill conflicts with this file (page length, project dates, Skills section, tracker, privacy), this file wins.
+Where a plugin or plugin-derived skill conflicts with this file (page length, project dates, Skills section, tracker, privacy), this file wins.
 
 ## Always report
 
