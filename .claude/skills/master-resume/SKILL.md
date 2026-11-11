@@ -49,6 +49,8 @@ For each significant achievement, write one STAR story in `stories.md`:
 
 Aim for 6-10 stories covering different skills. Draw from work, projects, study and volunteering.
 
+To write or review stories, use the `star-stories` skill.
+
 ## Gap interview
 
 When a job ad needs evidence that is not recorded here, follow `references/gap-interview.md`. It finds experience the user has but has not written down, and adds it here before any application uses it.

@@ -28,7 +28,7 @@ Copy every criterion exactly, as `##` headings. Add `###` sub-headings only wher
 
 ## 2. Plan before writing
 
-List every criterion. For each, pick the best story from `master/stories.md` and supporting items from the resume. Draw from all parts of the resume: work, projects, study, volunteering. Avoid using the same main story for two criteria. If a criterion has no good evidence, ask the user before writing.
+List every criterion. For each, pick the best story from `master/stories.md` and supporting items from the resume. Prefer `Status: ready` stories; flag any `draft` story used. Draw from all parts of the resume: work, projects, study, volunteering. Avoid using the same main story for two criteria. If a criterion has no good evidence, ask the user before writing.
 
 ## 3. Write each response in 3 parts
 

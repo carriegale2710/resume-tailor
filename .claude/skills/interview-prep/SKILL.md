@@ -13,7 +13,7 @@ Ask once: "What do you know about the interview? Format, length, who is on the p
 ## Steps
 
 1. **Likely questions.** For each vital criterion, write 1-2 behavioural questions ("Tell me about a time you...") and, for `can` criteria, 1 technical question. Add the usual openers: "Tell me about yourself", "Why this role?", "Why us?", "What do you know about us?", "Where do you see yourself in 5 years?"
-2. **Match a story.** For each question, pick the best story from `stories.md`. Use each story at most twice. If no story fits, run the gap interview (`master-resume`, `references/gap-interview.md`) and add the new story to `stories.md` first.
+2. **Match a story.** For each question, pick the best story from `stories.md`. Prefer `Status: ready` stories; flag any `draft` story used. Use each story at most twice. If no story fits, run the gap interview (`master-resume`, `references/gap-interview.md`) and add the new story to `stories.md` first.
 3. **Answer outlines.** Give each story as 4 short STAR lines, not a script. The user says it in their own words. Action is the longest part, and is what the user did, not the team. Aim for 90 seconds to 2 minutes per answer.
 4. **Gaps.** For each `gap` in `criteria.md`, outline an honest answer: what they have that is closest, and how they would learn the rest. Never suggest claiming the skill.
 5. **Know what you sent.** List every claim in the sent documents that the panel may probe, with the story behind it.
