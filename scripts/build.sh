@@ -3,10 +3,10 @@
 #   ./scripts/build.sh [--tags a,b,c] [--md-only] input.md
 # --tags     keep only tagged bullets matching any tag (untagged lines kept)
 # --md-only  print filtered Markdown to stdout instead of building a .docx
-# docx build requires tracker status "verified" and a y/N approval (sets ready, then exported).
-# The .docx needs pandoc only; optional templates/reference.docx styles it.
-# Single line breaks are kept. cover-letter.md: gated on cover_letter_status=verified (no ready/exported change),
-# styled by templates/cover-letter-reference.docx if present, else templates/reference.docx.
+# docx build requires tracker status "verified" (or "exported", which asks to confirm a re-export) and a y/N approval (sets ready, then exported).
+# The .docx needs pandoc only; optional templates/resume-reference.docx styles it.
+# Single line breaks are kept. cover-letter.md: gated on cover_letter_status=verified or exported (re-export asks to confirm; sets cover_letter_status exported, resume status untouched),
+# styled by templates/cover-letter-reference.docx if present, else templates/resume-reference.docx.
 # Everything from the first "## 6."-"## 10." heading on (master section 6 is private), tag/variant keys
 # and "> " notes are always removed. Private side files in master/ are never read.
 # docx build only: ${RESUME_NAME|EMAIL|LOCATION|PHONE|LINKS|WORKRIGHTS} and ${GITHUB_URL|LINKEDIN_URL|PORTFOLIO_URL}
@@ -46,15 +46,17 @@ if [ "$md_only" -eq 1 ]; then filter; exit 0; fi
 
 stem="$(basename "$in" .md)"; folder="$(basename "$(dirname "$(realpath "$in")")")"
 # cover-letter.md is gated on cover_letter_status and leaves the resume status alone.
-cover=0; [ "$stem" = cover-letter ] && cover=1
-col=status; [ "$cover" -eq 1 ] && col=cover_letter_status
+cov=""; [ "$stem" = cover-letter ] && cov=cover   # set-status.sh extra arg (unquoted below on purpose)
+col=status; [ -n "$cov" ] && col=cover_letter_status
 # Approval gate: only a verified draft builds; the y/N prompt is the human sign-off (sets ready).
 tracker="${TRACKER:-$(dirname "$0")/../applications/tracker.csv}"
-status="$(awk -F, -v k="$folder" -v col="$col" 'NR==1 { for (i=1;i<=NF;i++) c[$i]=i; next } $(c["id"])==k { print $(c[col]) }' "$tracker")"
-[ "$status" = "verified" ] || { echo "$col is '${status:-no tracker row}', not verified. Run verify-claims first." >&2; exit 1; }
-read -r -p "Approve $folder $stem and build docx? [y/N] " ok
+status="$(awk -v FPAT='([^,]*)|("([^"]|"")*")' -v k="$folder" -v col="$col" 'NR==1 { for (i=1;i<=NF;i++) c[$i]=i; next } $(c["id"])==k { print $(c[col]) }' "$tracker")"
+[ "$status" = "verified" ] || [ "$status" = "exported" ] || { echo "$col is '${status:-no tracker row}', not verified. Run verify-claims first." >&2; exit 1; }
+prompt="Approve $folder $stem and build docx? [y/N] "
+[ "$status" = "exported" ] && prompt="Re-export $folder $stem? This will overwrite your previous export. [y/N] "
+read -r -p "$prompt" ok
 [[ "$ok" =~ ^[Yy]$ ]] || { echo "Not approved." >&2; exit 1; }
-[ "$cover" -eq 1 ] || bash "$(dirname "$0")/set-status.sh" "$folder" ready
+[ -n "$cov" ] || bash "$(dirname "$0")/set-status.sh" "$folder" ready
 
 todo_matches="$(filter | grep -n 'TODO' || true)"
 if [ -n "$todo_matches" ]; then
@@ -83,13 +85,15 @@ fi
 out_dir="${RESUME_OUT_DIR:-$HOME/Downloads}"
 mkdir -p "$out_dir"
 out="$out_dir/$folder-$stem.docx"
-ref="$(dirname "$0")/../templates/reference.docx"
-if [ "$cover" -eq 1 ]; then
-  cref="$(dirname "$0")/../templates/cover-letter-reference.docx"
-  [ -f "$cref" ] && ref="$cref"
-fi
-ref_opt=(); [ -f "$ref" ] && ref_opt=(--reference-doc="$ref")
+# cover-letter.md prefers cover-letter-reference.docx; everything else (or a missing one) uses resume-reference.docx.
+ref_opt=()
+for r in "$stem" resume; do
+  [ -f "$(dirname "$0")/../templates/$r-reference.docx" ] && { ref_opt=(--reference-doc="$(dirname "$0")/../templates/$r-reference.docx"); break; }
+done
 # hard_line_breaks: each source line (headline, contacts, education entries, letter address block) stays its own line.
 printf '%s\n' "$md" | pandoc -f markdown+hard_line_breaks -t docx "${ref_opt[@]}" -o "$out"
 echo "Built $out"
-[ "$cover" -eq 1 ] || bash "$(dirname "$0")/set-status.sh" "$folder" exported || true
+bash "$(dirname "$0")/set-status.sh" "$folder" exported $cov || true
+# Resume build also offers the cover letter beside it (its own verified gate and y/N prompt).
+cl="$(dirname "$in")/cover-letter.md"
+if [ -z "$cov" ] && [ -f "$cl" ]; then bash "$0" "$cl" || echo "Cover letter not exported." >&2; fi

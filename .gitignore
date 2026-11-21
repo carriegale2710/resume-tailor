@@ -6,7 +6,13 @@
 # personal scratch pad
 TODO.md
 
+# personal folder - remove these after setup to sync your personal files to a private repo
+master/ 
+applications/
+
 # tool state
 copilot/
 .copilot/
 .obsidian/
+Claude outputs/
+docs/research/

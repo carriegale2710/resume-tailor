@@ -1,6 +1,6 @@
 ---
 name: humanize-prose
-description: Remove AI writing patterns from prose-heavy application documents (cover letters, cold emails, application form free-text answers, LinkedIn About) so they read as written by the candidate. Use after cover-letter-generator or similar, before verify-claims. Never use on resume.md.
+description: Remove AI writing patterns from prose-heavy application documents (cover letters, cold emails, application form free-text answers, LinkedIn About) so they read as written by the candidate. Use after cover-letter or similar, before verify-claims. Never use on resume.md.
 ---
 
 # Humanize prose
@@ -8,7 +8,7 @@ description: Remove AI writing patterns from prose-heavy application documents (
 ## Scope
 
 - Use on: `applications/<folder>/cover-letter.md`, cold emails, free-text application answers, LinkedIn About text.
-- Never use on `resume.md` or any resume bullets. Resumes follow the bullet rules in `AGENTS.md` and are checked by `resume-ats-optimizer` instead. If asked to humanize a resume, say so and stop.
+- Never use on `resume.md` or any resume bullets. Resumes follow the bullet rules in `AGENTS.md` and are checked by `application-lint` instead. If asked to humanize a resume, say so and stop.
 
 ## Rules
 
@@ -20,6 +20,7 @@ Follow `AGENTS.md`. These win over any general humanizing advice:
 - Australian English spelling.
 - Keep a professional, plain tone. No slang, no fake casualness, no emoji.
 - First person is fine in a cover letter; keep it specific ("I built", not "I am passionate about").
+- Never start a sentence with "I". Lead with the action, context or result ("On a two-week project, I built...").
 
 ## Patterns to fix
 

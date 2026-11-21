@@ -14,5 +14,17 @@
         ]
       }
     ]
-  }
+  },
+  "extraKnownMarketplaces": {
+    "job-application-agent": {
+      "source": {
+        "source": "github",
+        "repo": "carriegale2710/job-application-agent"
+      }
+    }
+  },
+  "enabledPlugins": {
+    "job-application-agent@job-application-agent": true
+  },
+  "ultracode": true
 }

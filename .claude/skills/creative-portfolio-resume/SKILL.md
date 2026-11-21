@@ -7,325 +7,39 @@ description: Balance visual design with ATS compatibility for creative roles
 
 ## When to Use This Skill
 
-Use this skill when the user:
-- Works in a creative field (design, marketing, writing)
-- Needs to balance visual design with ATS compatibility
-- Wants to showcase creative skills through resume design
-- Is building a portfolio resume for creative roles
-- Mentions: "creative resume", "designer resume", "visual resume", "portfolio resume", "creative field"
+Use when the user works in a creative field (design, marketing, writing, photo/video) and asks about a designed or visual resume, or mentions: "creative resume", "designer resume", "visual resume", "portfolio resume".
 
-## Core Capabilities
+## Two versions
 
-- Balance visual appeal with ATS compatibility
-- Design resumes for creative roles
-- Integrate portfolio elements with resume content
-- Advise on when to use creative vs. traditional formats
-- Guide visual hierarchy and design choices
-- Connect resume to portfolio effectively
+1. **ATS-safe version** for portals, job boards and any resume software will parse. Built by `section-architect` and `docx-export`: single column, no tables, text boxes, icons, images, skill bars or unusual fonts. Show craft through white space, clean hierarchy and strong copy.
+2. **Designed version** for networking, direct email, in-person interviews, creative agencies, and when the ad says ATS isn't used. Unsure which one the employer wants? Send the ATS-safe version.
 
-## The Creative Resume Dilemma
+Keep the wording identical in both. Only the design differs.
 
-**The Problem:**
-- Creative professionals want to show design skills through their resume
-- But most applications go through ATS systems
-- Overly designed resumes often fail ATS parsing
+## Designed version
 
-**The Solution:**
-Two-version approach:
-1. **ATS-compatible version** for online applications
-2. **Designed version** for portfolio, networking, direct submissions
+- The resume is a design sample, but information must stay easy to find. Save experiments for portfolio pieces.
+- Match the portfolio's colours and type. Use at most two font families and 2-3 colours.
+- Name largest, 3-4 levels of hierarchy, body at 10-12pt or more, strong contrast, readable in black and white.
+- Two columns, icons and background elements are allowed here only.
+- Send as PDF. Keep the file size small.
 
-## When to Use Each Version
+## By field
 
-### Use ATS-Compatible Version When:
-- Applying through online portals
-- Submitting to job boards
-- Resume will be parsed by software
-- You're unsure how it will be processed
+| Field | The design should show | Approach |
+|---|---|---|
+| Graphic design | Type, layout, hierarchy, detail | Restrained and sophisticated; link to portfolio for range |
+| UX/product | Information architecture, user focus | Scannable structure; link to case studies |
+| Marketing/brand | Brand thinking, storytelling | On-brand identity; a proof point for each claim |
+| Writing/content | Voice and precision | Clean layout; zero errors |
+| Photo/video | Visual eye | Uncluttered; let the portfolio carry it |
 
-### Use Designed Version When:
-- Networking events
-- Direct email to hiring manager
-- Portfolio website
-- In-person interviews
-- Creative agencies that expect visual resumes
-- When specifically told ATS isn't used
+## Portfolio links
 
-## ATS-Compatible Creative Resume
+Put the portfolio URL in the contact line. Link a case study from the bullet it supports. Choose and draft case studies with `portfolio-curator`.
 
-Even the ATS version can show creativity through:
+## Output
 
-### Subtle Design Elements
-- Strategic use of white space
-- Clean typography hierarchy
-- Thoughtful content organization
-- Strong copywriting
-- Polished, professional appearance
-
-### Safe Creative Touches
-- ✅ Custom professional font (ATS-safe ones)
-- ✅ Strategic bold and italic
-- ✅ Clean section dividers (simple lines)
-- ✅ Consistent, intentional spacing
-- ✅ Color in your name/headers (sparing)
-- ✅ Hyperlinks to portfolio
-
-### Still Avoid
-- ❌ Multiple columns
-- ❌ Text boxes
-- ❌ Images or icons
-- ❌ Tables for layout
-- ❌ Unusual fonts
-- ❌ Graphics or skill bars
-
-## Designed Portfolio Resume
-
-### Design Principles
-
-**1. Show, Don't Just Tell**
-- Your resume IS a design sample
-- Typography choices matter
-- Layout demonstrates design thinking
-- Details show attention to craft
-
-**2. Clarity Over Cleverness**
-- Information must still be findable
-- Prioritize readability
-- Save experimental design for portfolio pieces
-
-**3. Brand Consistency**
-- Match your portfolio website
-- Consistent color palette
-- Unified visual identity
-
-### Visual Elements to Consider
-
-**Typography:**
-- Headline font (display, personality)
-- Body font (readable, professional)
-- Size hierarchy (name > sections > body)
-- Line height and letter spacing
-
-**Color:**
-- Brand color for accents
-- High contrast for readability
-- Limited palette (2-3 colors max)
-- Consider print-friendly colors
-
-**Layout:**
-- Consider two-column (for designed version only)
-- Strategic white space
-- Clear visual hierarchy
-- Consistent margins and gutters
-
-**Visual Accents:**
-- Icons (if used, consistently)
-- Dividers and rules
-- Subtle background elements
-- Your logo/personal brand mark
-
-## Creative Field-Specific Guidance
-
-### Graphic Designers
-
-**Must Show:**
-- Typography skills
-- Layout and composition
-- Visual hierarchy
-- Attention to detail
-
-**Resume Approach:**
-- Your resume IS a portfolio piece
-- Clean, sophisticated design
-- Show range through subtle choices
-- Link to portfolio for variety
-
-### UX/Product Designers
-
-**Must Show:**
-- Information architecture skills
-- User-centered thinking
-- Clear visual hierarchy
-- Systematic approach
-
-**Resume Approach:**
-- Scannable, organized structure
-- Clear content hierarchy
-- User (recruiter) focused organization
-- Link to case studies
-
-### Marketing/Brand
-
-**Must Show:**
-- Brand thinking
-- Storytelling ability
-- Strategic communication
-- Attention to audience
-
-**Resume Approach:**
-- On-brand visual identity
-- Compelling narrative flow
-- Strategic content choices
-- Proof points for claims
-
-### Writers/Content
-
-**Must Show:**
-- Writing quality
-- Editing precision
-- Clear communication
-- Voice and style
-
-**Resume Approach:**
-- Impeccable copy
-- Strong bullets
-- Zero errors
-- Personality through writing
-
-### Photographers/Video
-
-**Must Show:**
-- Visual eye
-- Production quality
-- Technical skill
-- Aesthetic sensibility
-
-**Resume Approach:**
-- Clean, uncluttered design
-- Strong portfolio link
-- Quality over quantity
-- Let portfolio speak
-
-## Portfolio Integration
-
-### On the Resume
-
-**Link to Portfolio:**
-```
-Portfolio: yourname.com
-```
-
-**Link to Specific Work:**
-```
-• Redesigned checkout flow, increasing conversion by 40%
-  Case Study: yourname.com/checkout
-```
-
-### Portfolio Website Resume Page
-
-**Options:**
-1. PDF download (designed version)
-2. HTML resume page
-3. Interactive resume experience
-4. All of the above
-
-**Best Practice:**
-- Offer PDF download for convenience
-- Ensure web version is responsive
-- Keep updated with main resume
-
-## Design Execution Tips
-
-### Typography Checklist
-- [ ] Name is largest element
-- [ ] Clear hierarchy (3-4 levels max)
-- [ ] Body text is 10-12pt minimum
-- [ ] Line height allows breathing room
-- [ ] No more than 2 font families
-- [ ] Fonts complement each other
-
-### Layout Checklist
-- [ ] Clear sections and flow
-- [ ] Consistent margins throughout
-- [ ] Adequate white space
-- [ ] Elements align to grid
-- [ ] Visual balance achieved
-- [ ] Scannable in 6 seconds
-
-### Color Checklist
-- [ ] Limited palette (2-3 colors)
-- [ ] High contrast for text
-- [ ] Accessible color choices
-- [ ] Prints well in B&W
-- [ ] Consistent with personal brand
-- [ ] Professional appearance
-
-## Tools for Designed Resumes
-
-**Design Software:**
-- Adobe InDesign (best for layout)
-- Figma (good for web-native)
-- Adobe Illustrator (vector-based)
-- Sketch (Mac option)
-
-**Simpler Options:**
-- Canva (templates available)
-- Google Docs (limited but ATS-safe)
-- Microsoft Word (surprisingly capable)
-
-**Avoid:**
-- PowerPoint/Keynote (not designed for this)
-- Random online resume builders
-- Heavy templates that obscure content
-
-## Output Format
-
-When creating a creative resume:
-
-```markdown
-# CREATIVE RESUME STRATEGY
-
-## Role Type: [Design/Marketing/Creative]
-## Industry: [Agency/In-house/Freelance]
-
-## Version Strategy
-
-### Version 1: ATS-Compatible
-**Use for:** Online applications, job boards
-**Format:** .docx and .pdf
-**Design level:** Clean and professional, minimal embellishment
-
-### Version 2: Designed
-**Use for:** Portfolio, networking, direct outreach
-**Format:** .pdf (print-quality)
-**Design level:** Full creative treatment
-
-## Design Specifications
-
-### Typography
-- Headline: [Font name, weight, size]
-- Body: [Font name, weight, size]
-- Accent: [Font name, use case]
-
-### Colors
-- Primary: [Hex code] - [Use case]
-- Secondary: [Hex code] - [Use case]  
-- Text: [Hex code]
-
-### Layout
-- Format: [Single column / Two column]
-- Margins: [Specifications]
-- Grid: [If applicable]
-
-## Portfolio Integration
-- Main portfolio link: [URL]
-- Case studies to highlight: [List]
-- Resume page on portfolio: [Y/N]
-
-## Content Adjustments for Creative Field
-- [Specific content recommendation]
-- [Specific content recommendation]
-```
-
-## Creative Resume Checklist
-
-- ✅ Have both ATS and designed versions
-- ✅ Design demonstrates relevant skills
-- ✅ Content is still clear and scannable
-- ✅ Portfolio is prominently linked
-- ✅ Visual identity is consistent
-- ✅ Typography is professional
-- ✅ Colors are accessible and print-friendly
-- ✅ File is optimized for sharing (reasonable size)
-- ✅ Content quality matches design quality
-- ✅ Resume is a worthy portfolio piece
+- Which version to use for this application, and why
+- Type, colour and layout specs for the designed version, if the user wants one
+- Content changes for the creative field
