@@ -98,11 +98,12 @@ flowchart TD
 - Check with `pandoc --version`.
 - Run scripts with `bash scripts/<name>.sh`. On Windows use Git Bash.
 - `build.sh` and `set-status.sh` also need gawk. CI installs it.
+- `tests/test-block-secrets.sh` and `.claude/hooks/block-secrets.sh` need jq (decodes the hook payload). CI installs it.
 
-**macOS:** install both with [Homebrew](https://brew.sh). The built-in awk lacks the quote-aware CSV support the scripts use, so gawk is required.
+**macOS:** install all three with [Homebrew](https://brew.sh). The built-in awk lacks the quote-aware CSV support the scripts use, so gawk is required.
 
 ```bash
-brew install pandoc gawk
+brew install pandoc gawk jq
 ```
 
 ### Plugin
