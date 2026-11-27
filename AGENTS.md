@@ -55,10 +55,11 @@ Use `master-resume` for the edit. Show each edit as file, section, old, new; wri
 All skills live in `.claude/skills/<name>/SKILL.md` and are invoked by bare name (`cover-letter`). No plugin is needed. Typical order for an application:
 
 1. `tracker-intake`
-2. `resume-orchestrator` (runs `job-ad-decoder`, `resume-drafter`, `application-lint`, and other repo skills as needed, then `verify-claims`)
-3. `verify-claims` (mandatory final step before any file is called ready)
-4. `cover-letter` (optional), then `humanize-prose` on the letter (never on the resume), then `verify-claims` on the letter
-5. `interview-prep` (after applying)
+2. `job-fit` (quick apply / stretch / skip triage; stop here on skip)
+3. `resume-orchestrator` (runs `job-ad-decoder`, `resume-drafter`, `application-lint`, and other repo skills as needed, then `verify-claims`)
+4. `verify-claims` (mandatory final step before any file is called ready)
+5. `cover-letter` (optional), then `humanize-prose` on the letter (never on the resume), then `verify-claims` on the letter
+6. `interview-prep` (after applying)
 
 Other repo skills live in the same folder; each `SKILL.md` description says when to use it.
 

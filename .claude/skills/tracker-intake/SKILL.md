@@ -25,4 +25,4 @@ Inputs: `applications/<folder>/job-description.md`, `applications/tracker.csv`. 
 4. Also copy the dates into `Date posted:` and `Closing date:` in the job description file if those lines are empty.
 5. Report: the final row, and every cell left empty because the posting did not say.
 
-Next step: `resume-drafter`.
+Next step: `job-fit` (quick apply / stretch / skip triage), then `resume-orchestrator`.

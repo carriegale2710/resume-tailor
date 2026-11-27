@@ -50,7 +50,7 @@ Local Bash scripts orchestrate Claude Code skills over plain files. No services.
 flowchart TD
     JD["Job ad"] --> T["tailor.sh or manual run"]
     T --> F["Application folder + tracker row"]
-    F --> S["Claude Code skills: tracker-intake, resume-orchestrator"]
+    F --> S["Claude Code skills: tracker-intake, job-fit (manual only), resume-orchestrator"]
     M[("master/: only source of facts")] --> S
     R["tailoring-rules/"] --> S
     S --> D["resume.md draft"]
@@ -127,7 +127,7 @@ To change the look, open one in Word, modify the styles it uses and save: Headin
 
 ## Workflow
 
-**Shortcut:** `bash scripts/tailor.sh` (no arguments) does steps 1-4 interactively, in 6 steps:
+**Shortcut:** `bash scripts/tailor.sh` (no arguments) does steps 1-4 interactively, in 6 steps. It skips `job-fit`; run that in an agent session first if you want a fit verdict:
 
 - Asks for the company, role, URL, posting and closing date.
 - Opens one Claude session per skill.
@@ -149,7 +149,7 @@ Paste the posting into `applications/<folder>/job-description.md`.
 
 ### 2. Tailor
 
-In an agent session run `tracker-intake`, then `resume-orchestrator`. It analyses the posting, drafts with `resume-drafter`, reviews with `application-lint` and pulls in other repo skills as needed.
+In an agent session run `tracker-intake`, then `job-fit` for a quick apply / stretch / skip verdict, then `resume-orchestrator` if you go ahead. It analyses the posting, drafts with `resume-drafter`, reviews with `application-lint` and pulls in other repo skills as needed.
 
 - The agent writes `resume.md` and never edits `master/`.
 - Run `cover-letter` only if a letter is needed.
@@ -239,7 +239,7 @@ For `cover-letter.md` it checks and updates `cover_letter_status` instead, and l
 
 ### `scripts/tailor.sh`
 
-Runs steps 1-4 interactively. See [Workflow](#workflow).
+Runs steps 1-4 interactively, except `job-fit`. See [Workflow](#workflow).
 
 ## Private header
 
@@ -293,7 +293,7 @@ Summary-variant and add-on tags, and what each tag covers, live in `master/tags.
 
 - `AGENTS.md` holds the canonical rules. `CLAUDE.md` points to it.
 - `.claude/skills/` holds the skills as plain Markdown.
-- Skill order: `tracker-intake`, `resume-orchestrator`, `verify-claims`, then optionally `cover-letter` and `interview-prep`.
+- Skill order: `tracker-intake`, `job-fit`, `resume-orchestrator`, `verify-claims`, then optionally `cover-letter` and `interview-prep`.
 - General application skills were copied from `job-application-agent` and adapted. No plugin install is needed; `AGENTS.md` notes leftover conventions.
 
 **Tools without file access:** paste `AGENTS.md` into the instructions and upload only the skill, master and job description needed. Never upload `master/metrics-log.csv`, `master/narrative-notes.md` or `master/archive.md` to tools you do not control.

@@ -10,6 +10,7 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). No ver
 
 ### Added
 
+- `job-fit` skill: quick triage after `tracker-intake`. Marks each must-have met, partly or not met against the master and gives an apply, stretch or skip verdict in `fit.md`.
 - Templates: `linkedin-profile.md`, `github-profile.md`, `project-case-study.md`, `portfolio-about-me.md`, `cold-email.md`, `follow-up-email.md`, `linkedin-dm.md`. Each carries the master source-of-truth, privacy and placeholder rules in a header comment.
 - General application skills are copied from `job-application-agent` into `.claude/skills/` and called by bare name. The plugin is no longer enabled or needed; `AGENTS.md` wins on conflicts.
 - Master write-back (`AGENTS.md`): facts the user confirms in any skill's questions go to `master/` (resume, metrics log, skills inventory, `stories.md`) first, per confirmed edit.
