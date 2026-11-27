@@ -83,7 +83,7 @@ def lint_resume(lines, _):
     issues = []
     for n, line in enumerate(lines, 1):
         if TITLE_HEADING.match(line):
-            issues.append(("ERROR", n, "Heading says master/CV. Use your name as the heading."))
+            issues.append(("ERROR", n, "Heading says Resume/CV. Use your name as the heading."))
         if PERSONAL.search(line):
             issues.append(("ERROR", n, "Personal detail (DOB, gender, marital status). Remove it."))
         if REFEREES.search(line):
