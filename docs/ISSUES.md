@@ -27,7 +27,7 @@ Found by checking the README against `scripts/`, `.claude/skills/` and the spec.
 - [ ] gate: `skip` in `scripts/tailor.sh:40` sets `verified` without a pass, and `scripts/build.sh:54` checks status only. Recording each use is already in the spec's planned changes (`verify_skipped`).
 - [ ] enforcement: `scripts/set-status.sh` accepts `ready` and `exported` from any caller, and `.claude/settings.json` denies only `Read(./.env)`. The "agents never set these" rule is written only. Decide whether to add a deny rule.
 - [ ] history: `scripts/tailor.sh` never commits, and the only documented commit is at submit. A redraft overwrites an uncommitted `resume.md`.
-- [ ] privacy decision: `carriegale2710` is in README plugin commands and `.claude/settings.json`, while README says links never live in the repo. `.env` was not read, so a match with `GITHUB_URL` is unconfirmed.
+- [x] privacy decision: plugin commands and marketplace entry (with the GitHub handle) removed from README and `.claude/settings.json`.
 - [ ] stale: `CHANGELOG.md` says `templates/cover-letter-reference.docx` is not in the repo yet. It is tracked.
 - [ ] open question: one Claude session per skill, or bundle skills in one session? See the spec's Risks & Open Questions.
 - [x] README: corrected script details, gate wording, design decision reasons and the tracker column list.

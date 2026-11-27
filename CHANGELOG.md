@@ -4,12 +4,15 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). No ver
 
 ## [Unreleased]
 
+### Fixed
+
+- `application-lint`: heading error message said "master/CV"; restored "Resume/CV".
+
 ### Added
 
 - `job-fit` skill: quick triage after `tracker-intake`. Marks each must-have met, partly or not met against the master and gives an apply, stretch or skip verdict in `fit.md`.
 - Templates: `linkedin-profile.md`, `github-profile.md`, `project-case-study.md`, `portfolio-about-me.md`, `cold-email.md`, `follow-up-email.md`, `linkedin-dm.md`. Each carries the master source-of-truth, privacy and placeholder rules in a header comment.
-- General application skills now come from the `job-application-agent` plugin; `AGENTS.md` maps its paths to this repo and wins on conflicts.
-- Repo skills come first: `tailor.sh`, `resume-orchestrator`, `resume-drafter`, `humanize-prose`, `AGENTS.md` and `README.md` call the copies in `.claude/skills/` by bare name; the `job-application-agent` plugin is a fallback.
+- General application skills are copied from `job-application-agent` into `.claude/skills/` and called by bare name. The plugin is no longer enabled or needed; `AGENTS.md` wins on conflicts.
 - Master write-back (`AGENTS.md`): facts the user confirms in any skill's questions go to `master/` (resume, metrics log, skills inventory, `stories.md`) first, per confirmed edit.
 
 - `humanize-prose` skill strips AI patterns from cover letters.

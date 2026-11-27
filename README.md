@@ -69,7 +69,7 @@ flowchart TD
 | ------------------- | -------------------------------------------------- |
 | Orchestration       | Bash (Git Bash on Windows)                         |
 | Tracker edits       | gawk (quote-aware CSV)                             |
-| Drafting and checks | Claude Code skills, `job-application-agent` plugin |
+| Drafting and checks | Claude Code skills (`.claude/skills/`)             |
 | Export              | Pandoc, Word reference templates                   |
 | State               | Markdown, `applications/tracker.csv`, git          |
 | CI                  | GitHub Actions                                     |
@@ -105,17 +105,6 @@ flowchart TD
 ```bash
 brew install pandoc gawk jq
 ```
-
-### Plugin
-
-The `job-application-agent` plugin is enabled for this project only (`.claude/settings.json`). To install it on a new machine, run from the repo root:
-
-```bash
-claude plugin marketplace add carriegale2710/job-application-agent --scope project
-claude plugin install job-application-agent@job-application-agent --scope project
-```
-
-Its skills load only in sessions started in this repo. Restart the session or run `/reload-plugins` after installing.
 
 ### Use your own data (template folders)
 
@@ -305,7 +294,7 @@ Summary-variant and add-on tags, and what each tag covers, live in `master/tags.
 - `AGENTS.md` holds the canonical rules. `CLAUDE.md` points to it.
 - `.claude/skills/` holds the skills as plain Markdown.
 - Skill order: `tracker-intake`, `job-fit`, `resume-orchestrator`, `verify-claims`, then optionally `cover-letter` and `interview-prep`.
-- General application skills live in `.claude/skills/` (copied from the [`job-application-agent`](https://github.com/carriegale2710/job-application-agent) plugin). The plugin is a fallback; `AGENTS.md` maps its paths to this repo.
+- General application skills were copied from `job-application-agent` and adapted. No plugin install is needed; `AGENTS.md` notes leftover conventions.
 
 **Tools without file access:** paste `AGENTS.md` into the instructions and upload only the skill, master and job description needed. Never upload `master/metrics-log.csv`, `master/narrative-notes.md` or `master/archive.md` to tools you do not control.
 
