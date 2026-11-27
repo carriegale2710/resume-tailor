@@ -160,7 +160,7 @@ Paste the posting into `applications/<folder>/job-description.md`.
 
 ### 2. Tailor
 
-In an agent session run `tracker-intake`, then `resume-orchestrator`. It analyses the posting, drafts with `resume-drafter`, reviews with `application-lint` and pulls in other repo skills as needed.
+In an agent session run `tracker-intake`, then `job-fit` for a quick apply / stretch / skip verdict, then `resume-orchestrator` if you go ahead. It analyses the posting, drafts with `resume-drafter`, reviews with `application-lint` and pulls in other repo skills as needed.
 
 - The agent writes `resume.md` and never edits `master/`.
 - Run `cover-letter` only if a letter is needed.
@@ -304,7 +304,7 @@ Summary-variant and add-on tags, and what each tag covers, live in `master/tags.
 
 - `AGENTS.md` holds the canonical rules. `CLAUDE.md` points to it.
 - `.claude/skills/` holds the skills as plain Markdown.
-- Skill order: `tracker-intake`, `resume-orchestrator`, `verify-claims`, then optionally `cover-letter` and `interview-prep`.
+- Skill order: `tracker-intake`, `job-fit`, `resume-orchestrator`, `verify-claims`, then optionally `cover-letter` and `interview-prep`.
 - General application skills live in `.claude/skills/` (copied from the [`job-application-agent`](https://github.com/carriegale2710/job-application-agent) plugin). The plugin is a fallback; `AGENTS.md` maps its paths to this repo.
 
 **Tools without file access:** paste `AGENTS.md` into the instructions and upload only the skill, master and job description needed. Never upload `master/metrics-log.csv`, `master/narrative-notes.md` or `master/archive.md` to tools you do not control.
