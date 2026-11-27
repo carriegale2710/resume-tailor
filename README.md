@@ -138,7 +138,7 @@ To change the look, open one in Word, modify the styles it uses and save: Headin
 
 ## Workflow
 
-**Shortcut:** `bash scripts/tailor.sh` (no arguments) does steps 1-4 interactively, in 6 steps:
+**Shortcut:** `bash scripts/tailor.sh` (no arguments) does steps 1-4 interactively, in 6 steps. It skips `job-fit`; run that in an agent session first if you want a fit verdict:
 
 - Asks for the company, role, URL, posting and closing date.
 - Opens one Claude session per skill.
@@ -250,7 +250,7 @@ For `cover-letter.md` it checks and updates `cover_letter_status` instead, and l
 
 ### `scripts/tailor.sh`
 
-Runs steps 1-4 interactively. See [Workflow](#workflow).
+Runs steps 1-4 interactively, except `job-fit`. See [Workflow](#workflow).
 
 ## Private header
 

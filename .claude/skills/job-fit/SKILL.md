@@ -12,13 +12,13 @@ Keep it fast: no gap interview, no research, no drafting. `job-ad-decoder` does 
 
 ## Steps
 
-1. List every must-have in the posting ("required", "essential", "you will have", or stated 3+ times). Cap at 10; merge near-duplicates.
+1. List every must-have the posting marks "required", "essential" or "you will have". Repetition alone does not make a must-have; skip anything marked preferred, desirable, optional or nice to have. Merge only true near-duplicates. Count every must-have for the verdict; show at most 10 in the table, most important first.
 2. For each, find the strongest master bullet that proves it:
    - **Met:** a master bullet shows it directly.
-   - **Partly:** related or weaker evidence (adjacent tool, smaller scope, `Weak / exposure only` in the inventory).
+   - **Partly:** related or weaker evidence in a master bullet (adjacent tool, smaller scope).
    - **Not met:** no master evidence. A skill only in the inventory with no bullet counts as not met.
 3. Flag hard blockers separately: required degree, licence, clearance, citizenship or work rights, years of experience well above the master, location. Read work rights as unknown; never ask for or write the real value.
-4. Verdict:
+4. Verdict (check in this order; the first that holds wins):
    - **Apply:** all blockers clear and at least 70% of must-haves met.
    - **Stretch:** no blockers clear-fail, and met + partly cover at least half.
    - **Skip:** a blocker clearly fails, or fewer than half are met or partly met.
