@@ -50,7 +50,7 @@ Local Bash scripts orchestrate Claude Code skills over plain files. No services.
 flowchart TD
     JD["Job ad"] --> T["tailor.sh or manual run"]
     T --> F["Application folder + tracker row"]
-    F --> S["Claude Code skills: tracker-intake, resume-orchestrator"]
+    F --> S["Claude Code skills: tracker-intake, job-fit (manual only), resume-orchestrator"]
     M[("master/: only source of facts")] --> S
     R["tailoring-rules/"] --> S
     S --> D["resume.md draft"]
