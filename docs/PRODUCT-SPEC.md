@@ -72,7 +72,7 @@ V1 shipped as the existing scripts and skills (`tailor.sh`, `verify-claims`, `bu
 
 ~~A local CLI wrapper around the existing scripts and a configurable OpenAI-compatible API for an open-weight model. The API is used for tag suggestions and draft generation, not as the final verifier. No web app or database in V1. The specific model and endpoint may be selected later.~~
 
-**Changed:** `tailor.sh` wraps the existing scripts and opens Claude Code sessions for the skills (`tracker-intake`, `resume-orchestrator`, `verify-claims`, `job-application-agent:cover-letter`). No model API, web app or database. The API version moved to [V2](#v2-not-built).
+**Changed:** `tailor.sh` wraps the existing scripts and opens Claude Code sessions for the skills (`tracker-intake`, `resume-orchestrator`, `verify-claims`, `cover-letter`). No model API, web app or database. The API version moved to [V2](#v2-not-built).
 
 ### Non-Goals (V1)
 
@@ -92,7 +92,7 @@ V1 shipped as the existing scripts and skills (`tailor.sh`, `verify-claims`, `bu
   **Changed:** `resume-orchestrator` picks tags in the session; the user can redirect it in chat. Tags are not recorded. The API tag loop moved to [V2](#v2-not-built).
 - ✅ **FR3: Tailor.** ~~The model tailors the resume per `AGENTS.md` and `.claude/skills/resume-drafter`: 5-7 bullets per role family, keywords mirrored only where the master supports them, Australian English, and no tag names in output. It writes an unapproved `resume.md` in the application folder and never touches `master/`.~~ Shipped as `resume-orchestrator` (job-ad decoding, `resume-drafter`, `application-lint`), which sets status `tailored`.
 - ✅ **FR4: Cover letter.** ~~The model returns an unapproved `cover-letter.md` per the `job-application-agent:cover-letter` plugin skill, using only the approved public-safe facts and job description.~~
-  **Changed:** `tailor.sh` step 5 (optional) runs `job-application-agent:cover-letter`; `humanize-prose` then `verify-claims` run on the letter. The skill reads the master, not an allowlist.
+  **Changed:** `tailor.sh` step 5 (optional) runs `cover-letter`; `humanize-prose` then `verify-claims` run on the letter. The skill reads the master, not an allowlist.
 - **FR5: Verify (approval gate).** ~~Each factual claim in the resume and cover letter must cite an exact supporting line from master sections 1-5. The verifier reports its result in the session (not a saved file), listing supported claims, unsupported claims, TODO items, and citations. Local code validates that cited lines exist and checks metric claims against `master/metrics-log.csv`, applying its safe wording where required; the metrics log is used locally only, and its contents are never sent to the API. Other numbers must be supported by their cited master line. The user confirms that each citation semantically supports its claim. Ambiguous or uncited claims count as unsupported and block `ready`. A user may resolve a verifier false positive only by supplying an exact supporting master-line citation; genuinely unsupported claims cannot be overridden.~~
   **Changed:** `verify-claims` reports PASS/FAIL in the session with a numbered issue list (numbers, unsafe claims, TODOs, private content, consistency, leftovers, length). On PASS it sets `verified`. `tailor.sh` loops it until PASS. The user may override with `skip`; ~~the override is not recorded~~ every override is recorded as `verify_skipped` in `quality-log.csv` (planned). Local deterministic checks and per-claim citations are deferred behind a [trigger](#scope).
 - **FR6: Review and approval.** ~~The CLI displays what was cut, what was reworded, gaps, and every claim still needing evidence. After any edits, verification must run against the exact current Markdown. The user explicitly approves in the CLI; only then is the application's row in `tracker.csv` set to `ready`. Whenever a CLI command relies on `ready` or exports approved content, it compares the current Markdown hashes with the approval manifest. A mismatch changes the tracker status to `needs-review` and blocks the operation until verification and approval are repeated.~~
@@ -214,7 +214,7 @@ tailor.sh (intake: new-application.sh + pasted JD)
 
 Choices and reasons:
 
-- ✅ **Reuse first:** `new-application.sh`, `build.sh`, `.claude/skills/*` and `tracker.csv` already exist. ~~Keep the shell scripts as the folder-setup and docx-export layer; the CLI orchestrates them rather than reimplementing them.~~ `tailor.sh` orchestrates them; general skills come from the `job-application-agent` plugin.
+- ✅ **Reuse first:** `new-application.sh`, `build.sh`, `.claude/skills/*` and `tracker.csv` already exist. ~~Keep the shell scripts as the folder-setup and docx-export layer; the CLI orchestrates them rather than reimplementing them.~~ `tailor.sh` orchestrates them; general skills are copied from `job-application-agent` into `.claude/skills/`.
 - ~~**Language:** Python 3 for the orchestrator and verification workflow.~~ **Changed:** Bash (Git Bash on Windows) with gawk and Pandoc. Python moved to [V2](#v2-not-built).
 - ~~**Provider compatibility:**~~ Moved to [V2](#v2-not-built).
 - ~~**Local verification:** validate citations against master lines, check metric claims against `master/metrics-log.csv`, and check other numbers against their cited lines. The model may propose source references, but only the local checks and user's semantic review can satisfy the approval gate.~~ **Changed:** `verify-claims` plus the user's y/N approval form the gate.
@@ -331,7 +331,7 @@ Trigger: a `verified` or exported draft is found to contain an unsupported numbe
 
 ### Later phases
 
-- **Assisted submit:** a script that opens the application page and pre-fills fields using the `job-application-agent:application-form` plugin skill, with the user clicking submit. Assess job-board terms and account risk before implementation; full autopilot is not a goal.
+- **Assisted submit:** a script that opens the application page and pre-fills fields using the `application-form` skill, with the user clicking submit. Assess job-board terms and account risk before implementation; full autopilot is not a goal.
 - **Web app:** only if the CLI is the bottleneck. A local review/export UI over the same folder structure; hosting would mean resume data leaves the machine and would require a separate privacy decision.
 - **Job feed:** saved-search email alerts parsed into a job list, reviewed by hand, each handed to `tailor.sh` one at a time (~~`jobs.txt` for batch~~).
 
@@ -350,7 +350,7 @@ Trigger: a `verified` or exported draft is found to contain an unsupported numbe
 | Separate Claude session per skill, or bundle skills in one session? | Low | Undecided. `tailor.sh` opens one session per skill, with no recorded reason. Separate sessions could give `verify-claims` fresh context; one session shares context and avoids restarts. Today is mixed: `resume-orchestrator` runs `verify-claims` in its own session, and `tailor.sh` step 4 then skips a `verified` row. | Open |
 | Agents can set `ready` or `exported`; only `AGENTS.md` forbids it | Medium | `set-status.sh` accepts both from any caller, and `.claude/settings.json` denies only `Read(./.env)`. Add a deny rule if the rule needs enforcing. | Open |
 | A redraft overwrites an uncommitted `resume.md`                 | Medium | Git replaced revisions, but nothing commits before submit. Commit before re-running a skill. | Open |
-| GitHub handle is committed, while README says links never live in the repo | Low | `carriegale2710` is in README plugin commands and `.claude/settings.json`. Repo stays private; accept it or reword the README. | Open |
+| GitHub handle is committed, while README says links never live in the repo | Low | Plugin commands and the marketplace entry were removed from README and `.claude/settings.json`. | Resolved |
 
 ## Assumptions Made
 

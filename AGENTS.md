@@ -52,7 +52,7 @@ Use `master-resume` for the edit. Show each edit as file, section, old, new; wri
 
 ## Skills
 
-Skills live in `.claude/skills/<name>/SKILL.md`; always use these first. The general application skills there are copies of the `job-application-agent` plugin skills, invoked by bare name (`cover-letter`, not `job-application-agent:cover-letter`). Use the plugin version only when no repo copy exists. Typical order for an application:
+All skills live in `.claude/skills/<name>/SKILL.md` and are invoked by bare name (`cover-letter`). No plugin is needed. Typical order for an application:
 
 1. `tracker-intake`
 2. `resume-orchestrator` (runs `job-ad-decoder`, `resume-drafter`, `application-lint`, and other repo skills as needed, then `verify-claims`)
@@ -62,17 +62,17 @@ Skills live in `.claude/skills/<name>/SKILL.md`; always use these first. The gen
 
 Other repo skills live in the same folder; each `SKILL.md` description says when to use it.
 
-### Plugin-derived skills in this repo
+### Skills copied from job-application-agent
 
-The `job-application-agent` plugin, and the skills copied from it, assume its own file layout. In this repo, read its paths as:
+The general application skills were copied from the `job-application-agent` repo and adapted to this layout. Some still carry its conventions; read them as:
 
-- `master/master-resume.md` is `master/master-resume.md`. `master/stories.md` and `master/linkedin.md` are `master/stories.md` and `master/linkedin.md` (master write-back may create `master/stories.md`; create `master/linkedin.md` only when the user asks).
+- `master/stories.md` may be created by master write-back; create `master/linkedin.md` only when the user asks.
 - `applications/<company>-<role>/` is `applications/<folder>/`. The ad is in `job-description.md`; `job-ad-decoder` writes `criteria.md` beside it.
-- Numbers come from `master/metrics-log.csv` per the source-of-truth rules, not from the plugin's estimate rules.
-- `applications/tracker.csv` is the tracker. Never create the plugin's `tracker.md`.
-- Never run `docx-export` (repo or plugin); `scripts/build.sh` exports (user-run only).
+- Numbers come from `master/metrics-log.csv` per the source-of-truth rules, not from a skill's estimate rules.
+- `applications/tracker.csv` is the tracker. Never create a `tracker.md`.
+- Never run `docx-export`; `scripts/build.sh` exports (user-run only).
 
-Where a plugin or plugin-derived skill conflicts with this file (page length, project dates, Skills section, tracker, privacy), this file wins.
+Where a skill conflicts with this file (page length, project dates, Skills section, tracker, privacy), this file wins.
 
 ## Always report
 
