@@ -7,14 +7,14 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). No ver
 ### Added
 
 - Templates: `linkedin-profile.md`, `github-profile.md`, `project-case-study.md`, `portfolio-about-me.md`, `cold-email.md`, `follow-up-email.md`, `linkedin-dm.md`. Each carries the master source-of-truth, privacy and placeholder rules in a header comment.
-- General application skills now come from the `job-application-agent` plugin; `AGENTS.md` maps its paths to this repo and wins on conflicts.
-- Repo skills come first: `tailor.sh`, `resume-orchestrator`, `resume-drafter`, `humanize-prose`, `AGENTS.md` and `README.md` call the copies in `.claude/skills/` by bare name; the `job-application-agent` plugin is a fallback.
 - Master write-back (`AGENTS.md`): facts the user confirms in any skill's questions go to `master/` (resume, metrics log, skills inventory, `stories.md`) first, per confirmed edit.
-
 - `humanize-prose` skill strips AI patterns from cover letters.
 - `humanize-prose` refuses `resume.md`; edits wording only, adds no facts.
 - `build.sh` exports `cover-letter.md`: needs `cover_letter_status` `verified`, keeps line breaks, uses `templates/cover-letter-reference.docx` if present, else `templates/reference.docx`, leaves resume status alone.
 - Word reference templates: `templates/reference.docx` (one-page resume, A4). Optional `templates/cover-letter-reference.docx` for letters; not in the repo yet.
+- Master draft content: add docs for portfolio pages, profiles, cover letters, introductions and STAR stories.
+- UNSW resume guide PDF in references, plus skills library built from it.
+- `master/skills-inventory.csv` columns: Strong, Proficient, Weak / exposure only.
 
 ### Changed
 
@@ -22,13 +22,14 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). No ver
 - A resume build also offers the `cover-letter.md` in the same folder (own `verified` gate and y/N prompt).
 - Cover letter build now sets `cover_letter_status` to `exported`; `set-status.sh <folder> exported cover` allows it. Resume status stays untouched.
 - Renamed `templates/reference.docx` to `templates/resume-reference.docx`.
-- `resume-orchestrator`, `tailor.sh` and docs call `job-application-agent:job-ad-decoder`, `application-lint`, `achievement-statements`, `cover-letter` and `interview-prep`.
+- `resume-orchestrator`, `tailor.sh` and docs call `job-ad-decoder`, `application-lint`, `achievement-statements`, `cover-letter` and `interview-prep`.
 
 - `AGENTS.md` order: cover letter, `humanize-prose`, then `verify-claims`.
 - `design.md`, `software-engineer.md` cut to role-specific tick boxes.
 - `set-status.sh`, `build.sh` now need gawk; CI installs it.
 - `set-status.sh` prints `<column> <status>: <folder>`.
 - `test-docx-output-dir.sh` folded into `test-docx-export.sh`.
+- Master resume updated using the repo's tailoring skills.
 
 ### Removed
 
@@ -42,6 +43,7 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). No ver
 - Quoted commas in `tracker.csv` no longer shift status columns.
 - `tailor.sh` status read is quote-aware too; test 11 covers it.
 - Cover-letter verify now checks `cover-letter.md` and uses `cover_letter_status` (reset to `drafted`, then `verified`), not the resume `status`. `build.sh` can now export a letter verified through `tailor.sh`.
+- Inconsistencies in `master/master-resume.md`.
 
 ## [0.1.0] - 2026-10-29
 
