@@ -16,7 +16,7 @@ jobs:
       - name: Install docx export dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install --no-install-recommends -y pandoc gawk
+          sudo apt-get install --no-install-recommends -y pandoc gawk jq
       - name: Set up template folders
         run: |
           [ -d master ] || cp -r master-example master

@@ -50,7 +50,7 @@ Local Bash scripts orchestrate Claude Code skills over plain files. No services.
 flowchart TD
     JD["Job ad"] --> T["tailor.sh or manual run"]
     T --> F["Application folder + tracker row"]
-    F --> S["Claude Code skills: tracker-intake, resume-orchestrator"]
+    F --> S["Claude Code skills: tracker-intake, job-fit (manual only), resume-orchestrator"]
     M[("master/: only source of facts")] --> S
     R["tailoring-rules/"] --> S
     S --> D["resume.md draft"]
@@ -69,7 +69,7 @@ flowchart TD
 | ------------------- | -------------------------------------------------- |
 | Orchestration       | Bash (Git Bash on Windows)                         |
 | Tracker edits       | gawk (quote-aware CSV)                             |
-| Drafting and checks | Claude Code skills, `job-application-agent` plugin |
+| Drafting and checks | Claude Code skills (`.claude/skills/`)             |
 | Export              | Pandoc, Word reference templates                   |
 | State               | Markdown, `applications/tracker.csv`, git          |
 | CI                  | GitHub Actions                                     |
@@ -98,23 +98,13 @@ flowchart TD
 - Check with `pandoc --version`.
 - Run scripts with `bash scripts/<name>.sh`. On Windows use Git Bash.
 - `build.sh` and `set-status.sh` also need gawk. CI installs it.
+- `tests/test-block-secrets.sh` and `.claude/hooks/block-secrets.sh` need jq (decodes the hook payload). CI installs it.
 
-**macOS:** install both with [Homebrew](https://brew.sh). The built-in awk lacks the quote-aware CSV support the scripts use, so gawk is required.
-
-```bash
-brew install pandoc gawk
-```
-
-### Plugin
-
-The `job-application-agent` plugin is enabled for this project only (`.claude/settings.json`). To install it on a new machine, run from the repo root:
+**macOS:** install all three with [Homebrew](https://brew.sh). The built-in awk lacks the quote-aware CSV support the scripts use, so gawk is required.
 
 ```bash
-claude plugin marketplace add carriegale2710/job-application-agent --scope project
-claude plugin install job-application-agent@job-application-agent --scope project
+brew install pandoc gawk jq
 ```
-
-Its skills load only in sessions started in this repo. Restart the session or run `/reload-plugins` after installing.
 
 ### Use your own data (template folders)
 
@@ -137,7 +127,7 @@ To change the look, open one in Word, modify the styles it uses and save: Headin
 
 ## Workflow
 
-**Shortcut:** `bash scripts/tailor.sh` (no arguments) does steps 1-4 interactively, in 6 steps:
+**Shortcut:** `bash scripts/tailor.sh` (no arguments) does steps 1-4 interactively, in 6 steps. It skips `job-fit`; run that in an agent session first if you want a fit verdict:
 
 - Asks for the company, role, URL, posting and closing date.
 - Opens one Claude session per skill.
@@ -159,7 +149,7 @@ Paste the posting into `applications/<folder>/job-description.md`.
 
 ### 2. Tailor
 
-In an agent session run `tracker-intake`, then `resume-orchestrator`. It analyses the posting, drafts with `resume-drafter`, reviews with `application-lint` and pulls in other repo skills as needed.
+In an agent session run `tracker-intake`, then `job-fit` for a quick apply / stretch / skip verdict, then `resume-orchestrator` if you go ahead. It analyses the posting, drafts with `resume-drafter`, reviews with `application-lint` and pulls in other repo skills as needed.
 
 - The agent writes `resume.md` and never edits `master/`.
 - Run `cover-letter` only if a letter is needed.
@@ -249,7 +239,7 @@ For `cover-letter.md` it checks and updates `cover_letter_status` instead, and l
 
 ### `scripts/tailor.sh`
 
-Runs steps 1-4 interactively. See [Workflow](#workflow).
+Runs steps 1-4 interactively, except `job-fit`. See [Workflow](#workflow).
 
 ## Private header
 
@@ -271,7 +261,8 @@ PORTFOLIO_URL="yourportfolio.com"
 - The build substitutes them and fails if `.env` or a variable the draft uses is missing.
 - The three `*_URL` values are optional: an unset one is dropped along with its `|` separator.
 - Run the build yourself, not through an agent.
-- `.claude/settings.json` denies Claude's Read tool on `.env` (best effort; shell commands are a separate path).
+- `.claude/settings.json` denies Claude's Read tool on `.env`. Its `PreToolUse` hook (`.claude/hooks/block-secrets.sh`) also blocks Bash, Read, Grep and Glob calls that name `.env` or `~/.config/resume`.
+- This is best effort. The hook matches text, so a disguised path such as `cat $(echo .e)nv` gets through, and the agent can edit these repo files. To add protection, copy the hook and deny rule into `~/.claude/settings.json` and keep the real values outside the repo (`RESUME_ENV_FILE=~/.config/resume/identity.env`). For a hard guarantee, run the agent in a sandbox or as a separate OS user.
 
 ## Tags
 
@@ -302,8 +293,8 @@ Summary-variant and add-on tags, and what each tag covers, live in `master/tags.
 
 - `AGENTS.md` holds the canonical rules. `CLAUDE.md` points to it.
 - `.claude/skills/` holds the skills as plain Markdown.
-- Skill order: `tracker-intake`, `resume-orchestrator`, `verify-claims`, then optionally `cover-letter` and `interview-prep`.
-- General application skills live in `.claude/skills/` (copied from the [`job-application-agent`](https://github.com/carriegale2710/job-application-agent) plugin). The plugin is a fallback; `AGENTS.md` maps its paths to this repo.
+- Skill order: `tracker-intake`, `job-fit`, `resume-orchestrator`, `verify-claims`, then optionally `cover-letter` and `interview-prep`.
+- General application skills were copied from `job-application-agent` and adapted. No plugin install is needed; `AGENTS.md` notes leftover conventions.
 
 **Tools without file access:** paste `AGENTS.md` into the instructions and upload only the skill, master and job description needed. Never upload `master/metrics-log.csv`, `master/narrative-notes.md` or `master/archive.md` to tools you do not control.
 
@@ -317,6 +308,7 @@ bash tests/run-all.sh
 
 | Test                      | Purpose                                                                                           |
 | ------------------------- | ------------------------------------------------------------------------------------------------- |
+| `test-block-secrets.sh`   | hook blocks `.env` and `~/.config/resume` in Bash, Read, Grep and Glob calls; look-alikes pass    |
 | `test-build.sh`           | tag filtering, dropped private sections, `TODO` warning, `.env` header fill, missing-value errors |
 | `test-master-split.sh`    | master stops at section 6; metrics log, skills inventory, narrative notes and archive files exist |
 | `test-new-application.sh` | expected files, unsafe names rejected, duplicates refused, `pending` row added                    |
@@ -335,7 +327,8 @@ master-master/
 ├── ISSUES.md                      # open repo issues
 ├── .env.example                   # placeholder header values; copy to .env
 ├── .claude/
-│   ├── settings.json              # denies Read on .env
+│   ├── settings.json              # denies Read on .env, registers the block-secrets hook
+│   ├── hooks/block-secrets.sh     # PreToolUse: blocks tool calls that name .env
 │   └── skills/                    # <skill-name>/SKILL.md
 ├── .github/workflows/tests.yml
 ├── applications/                  # tracker.csv, archive/, one YYYY-MM-company-role/ folder per application
